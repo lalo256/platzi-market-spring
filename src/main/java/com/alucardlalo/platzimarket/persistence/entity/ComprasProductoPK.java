@@ -3,7 +3,7 @@ package com.alucardlalo.platzimarket.persistence.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
-
+//entity con llave primaria compuesta
 @Embeddable
 public class ComprasProductoPK implements Serializable {
     @Column(name = "id_compra")
