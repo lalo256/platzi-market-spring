@@ -5,20 +5,20 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name="compras")
+@Table(name = "compras")
 public class Compra {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_compra")
+    @Column(name = "id_compra")
     private Integer idCompra;
 
-    @Column(name="id_cliente")
+    @Column(name = "id_cliente")
     private String idCliente;
 
     private LocalDateTime fecha;
 
-    @Column(name="medio_pago")
+    @Column(name = "medio_pago")
     private String medioPago;
 
     private String comentario;
@@ -77,5 +77,21 @@ public class Compra {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<ComprasProducto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<ComprasProducto> productos) {
+        this.productos = productos;
     }
 }

@@ -3,7 +3,6 @@ package com.alucardlalo.platzimarket.domain;
 import java.math.BigDecimal;
 
 public class Product {
-
     private int productId;
     private String name;
     private int categoryId;
