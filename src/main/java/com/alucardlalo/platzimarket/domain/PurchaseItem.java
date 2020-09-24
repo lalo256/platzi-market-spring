@@ -12,8 +12,8 @@ public class PurchaseItem {
         return productoId;
     }
 
-    public void setProductoId(int productoId) {
-        this.productoId = productoId;
+    public void setProductoId(int productId) {
+        this.productoId = productId;
     }
 
     public int getQuantity() {
