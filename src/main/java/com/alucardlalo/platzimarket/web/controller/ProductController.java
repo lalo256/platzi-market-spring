@@ -2,6 +2,10 @@ package com.alucardlalo.platzimarket.web.controller;
 
 import com.alucardlalo.platzimarket.domain.Product;
 import com.alucardlalo.platzimarket.domain.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +22,21 @@ public class ProductController {
 
     @GetMapping("/all")//se usa para lanzar la api desde la API y con que direcionamiento se accede
     //se entra desde http://localhost:8090/platzi-market/api/products/all
+    @ApiOperation("Get all supermarket products")
+    @ApiResponse(code = 200, message ="OK")//anotaciones para controlar las visualizaciones de swagger
     public ResponseEntity<List<Product>> getAll(){
     //se cambio para controlar las peticiones HTTP
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")//la notacion es para especificar el numero de id y path variable lo especifica
-    public ResponseEntity<Product> getProduct(@PathVariable("id") int productId){
+    @ApiOperation("Search a product with an Id")
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "OK"),
+            @ApiResponse(code = 404, message = "product not found"),
+    })
+    public ResponseEntity<Product> getProduct(@ApiParam(value = "The id of the product", required = true, example = "7")//se agrego para este end point en particular
+                                                  @PathVariable("id") int productId){
         //se entra desde http://localhost:8090/platzi-market/api/products/(numero de id)
         return productService.getProduct(productId).map(product -> new ResponseEntity<>(product, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));

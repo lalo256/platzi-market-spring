@@ -18,10 +18,10 @@ public interface PurchaseMapper {
             @Mapping(source = "medioPago", target = "paymentMethod"),
             @Mapping(source = "comentario", target = "comment"),
             @Mapping(source = "estado", target = "state"),
-            @Mapping(source = "productos", target = "item")
+            @Mapping(source = "productos", target = "items")
     })
     Purchase toPurchase(Compra compra);
-    List<Purchase> toPurchase(List<Compra> compra);//no necesita un mapper porq ya esta definido arriba y lo toma
+    List<Purchase> toPurchases(List<Compra> compra);//no necesita un mapper porq ya esta definido arriba y lo toma
 
     @InheritInverseConfiguration
     @Mapping(target = "cliente", ignore = true)
