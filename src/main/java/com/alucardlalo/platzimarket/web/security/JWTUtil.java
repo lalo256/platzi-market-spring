@@ -3,9 +3,10 @@ package com.alucardlalo.platzimarket.web.security;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
-
+@Component
 public class JWTUtil {
 
     //se nesecita una constante para firmar el token y se declara sig con nombre key

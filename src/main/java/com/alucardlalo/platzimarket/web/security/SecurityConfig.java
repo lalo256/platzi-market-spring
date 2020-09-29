@@ -2,9 +2,14 @@ package com.alucardlalo.platzimarket.web.security;
 
 import com.alucardlalo.platzimarket.domain.service.APIUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import javax.persistence.Basic;
 /*interfaz encargada de la seguridad de la API*/
 
 @EnableWebSecurity
@@ -18,5 +23,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(apiUserDetailService);
+    }
+
+    //anexo de seguridad  para el uso del token
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests().antMatchers("/**/authenticate").permitAll()//todas las peticiones que tengan authentica son permitidas
+        .anyRequest().authenticated();//cualquier otra peticion necesita autentificacion
+    }
+
+    //elecion para gestor de autentificacion
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }
