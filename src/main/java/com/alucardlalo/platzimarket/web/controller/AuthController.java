@@ -34,7 +34,7 @@ public class AuthController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword()));
             UserDetails userDetails = apiUserDetailService.loadUserByUsername(request.getUserName());
             String jwt = jwtUtil.generateToken(userDetails);
-            return new ResponseEntity<>(HttpStatus.OK);//retorno al ser correcta la autentificacion
+            return new ResponseEntity<>(new AutenticationResponse(jwt),HttpStatus.OK);//retorno al ser correcta la autentificacion
         }catch (BadCredentialsException e){ //marca de error cuando usuario y contraseña no coincidan
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);//retorno al no ser correcta la autentificacion
         }

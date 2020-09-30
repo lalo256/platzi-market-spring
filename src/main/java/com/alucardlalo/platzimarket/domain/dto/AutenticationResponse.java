@@ -1,18 +1,18 @@
 package com.alucardlalo.platzimarket.domain.dto;
 
 public class AutenticationResponse {
-    private String kwt;
+    private String jwt;
 
-    public AutenticationResponse(String kwt) {
-        this.kwt = kwt;
+    public AutenticationResponse(String jwt) {
+        this.jwt = jwt;
     }
 
-    public String getKwt() {
-        return kwt;
+    public String getjwt() {
+        return jwt;
     }
 
-    public void setKwt(String kwt) {
-        this.kwt = kwt;
+    public void setjwt(String jwt) {
+        this.jwt = jwt;
     }
 
     /*creado para ayudar al controlador de seguridad*/
